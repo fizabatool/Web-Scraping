@@ -1,0 +1,21 @@
+
+
+import requests
+from bs4 import BeautifulSoup
+import urllib.request
+import os
+
+url='https://unsplash.com/s/photos/bird'
+
+headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'}
+
+r=requests.get(url,headers=headers)
+soup=BeautifulSoup(r.content,'html.parser')
+img=soup.find_all('img')
+
+for image in img:
+    image_path=image['src']
+    print(image_path)
+    with open ('/Users/i Dolphin Online/Documents/imagez/'+'.jpg','wb') as f:
+        inn=requests.get(image_path)
+        f.write(inn.content)
